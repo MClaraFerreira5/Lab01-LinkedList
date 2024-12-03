@@ -1,50 +1,82 @@
 package estruturaDeDados;
 
 public class Lista {
+    int[] lista = new int[10];
+    int quantidade;
 
     public Lista() {
-        // TODO Auto-generated constructor stub
-        throw new UnsupportedOperationException("Unimplemented constructor 'ListaCircular'");
+        this.quantidade = 0;
+        
     }
 
     public void insereInicio(int i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereInicio'");
+        if(lista.length == quantidade)
+            return;
+        for(int j = quantidade; j > 0; j--){
+            lista[j] = lista[j-1];
+        }
+        lista[0] = i;
+        quantidade++;
+       
     }
 
     public boolean buscaElemento(int i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaElemento'");
+        for(int j = 0; j < quantidade; j++){
+            if(lista[j] == i)
+                return true;
+        }
+        return false;
     }
 
     public Object buscaIndice(int i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaIndice'");
+        for(int j = 0; j < quantidade; j++){
+            if(lista[j] == i)
+                return j;
+        }
+        return -1;
     }
 
     public void insereFim(int i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereFim'");
+        if(lista.length == quantidade)
+            return;
+        lista[quantidade] = i;
+        quantidade++;
     }
 
     public void removeInicio() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeInicio'");
+        if(quantidade == 0)
+            return;
+        for(int j = 0; j < quantidade; j++){
+            lista[j] = lista[j+1];
+        }
+        quantidade--;
+
     }
 
     public void removeFim() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeFim'");
+        if(quantidade == 0)
+            return;
+        lista[quantidade-1] = 0;
+        quantidade--;
     }
 
     public void removeIndice(int i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeIndice'");
+        if(i < 0 || i >= quantidade)
+            return;
+        for(int j = i; j < quantidade - 1; j++){
+            lista[j] = lista[j+1];
+        }
+        quantidade--;
     }
 
-    public void insereElementoPosicao(int i, int j) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereElementoPosicao'");
+    public void insereElementoPosicao(int posicao, int valor) {
+        if(quantidade == lista.length || posicao < 0 || posicao > quantidade)
+            return;
+        for(int j = quantidade; j > posicao; j++){
+            lista[j] = lista[j-1];
+        }
+        lista[posicao] = valor;
+        quantidade++;
     }
-    
+
 }
